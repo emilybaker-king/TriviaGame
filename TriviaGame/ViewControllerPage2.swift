@@ -38,6 +38,13 @@ class ViewControllerPage2: UIViewController {
     var randomIndex: Int!
     
     
+    
+    var filePath: String {
+        let manager = FileManager.default
+        let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
+        return (url?.appendingPathComponent("Trivia").path)!
+    }
+    
     //the current question that is being answered
     var currentQuestion: TriviaQuestion! {
         //property observer for currentQueston
@@ -56,11 +63,22 @@ class ViewControllerPage2: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let decodedQuestions = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? [TriviaQuestion] {
+            questions.append(contentsOf: decodedQuestions)
+        } else {
+            populateQuestions()
+        }
+        
+        NSKeyedArchiver.archiveRootObject(questions, toFile: filePath)
+        
         // Do any additional setup after loading the view.
-        populateQuestions()
+        //populateQuestions()
         getNewQuestion()
         scoreLabel.text = "\(score)"
         whatGif.isHidden = true
+        
+        let gif = UIImage.gifImageWithName("what")
+        whatGif.image = gif
     }
     
     
@@ -74,7 +92,7 @@ class ViewControllerPage2: UIViewController {
         let question5 = TriviaQuestion(question: "Stratus, Cirrus, and Cumulus are types of what?", answers: ["Hills", "Clouds", "Ecosystems", "Animals"], correctAnswerIndex: 1)
         let question6 = TriviaQuestion(question: "Which Teenage Mutant Ninja Turtle always wears red bandanas?", answers: ["Leonardo", "Donatello", "Michelangelo", "Raphael"], correctAnswerIndex: 3)
         let question7 = TriviaQuestion(question: "What was the name of the Krusty Krab before Mr. Krabs bought it?", answers: ["Rusty Krab", "Dusty Krab", "Rowdy Krab", "Kuddly Krab"], correctAnswerIndex: 0)
-        let question8 = TriviaQuestion(question: "What popular soda beverage was originally developed as a mixer for whiskey?", answers: ["Coke", "Sprite", "Mountain Dew", "Dr Pepper"], correctAnswerIndex: 3)
+        let question8 = TriviaQuestion(question: "What popular soda beverage was originally developed as a mixer for whiskey?", answers: ["Coke", "Sprite", "Mountain Dew", "Dr Pepper"], correctAnswerIndex: 2)
         let question9 = TriviaQuestion(question: "What year was the original Jurassic Park movie released?", answers: ["1993", "1994", "1992", "1995"], correctAnswerIndex: 0)
         let question10 = TriviaQuestion(question: "How many planets in our solar system have moons?", answers: ["4", "5", "6", "7"], correctAnswerIndex: 2)
         let question11 = TriviaQuestion(question: "In the movie Bambi, what type of animal is Bambi's friend Flower?", answers: ["Rabbit", "Owl", "Skunk", "Deer"], correctAnswerIndex: 2)
@@ -84,11 +102,12 @@ class ViewControllerPage2: UIViewController {
         let question15 = TriviaQuestion(question: "In Avatar: The Last Airbender, what air temple did Guru Pathik live at?", answers: ["Northern Air Temple", "Eastern Air Temple", "Southern Air Temple", "Western Air Temple"], correctAnswerIndex: 1)
         let question16 = TriviaQuestion(question: "In Avatar: The last Airbender, when Iroh created the ability to redirect lightning, what bending was he studying?", answers: ["Water bending", "Fire bending", "Earth bending", "Air bending"], correctAnswerIndex: 0)
         
-        questions = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10, question11, question12, question13, question14, question15, question16]
+        questions.append(contentsOf: [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10, question11, question12, question13, question14, question15, question16])
     }
     
     //This function will be used to get a random question from our array of questions
     func getNewQuestion() {
+        whatGif.isHidden = true
         if questions.count > 0 {
         //get a random index from 0 to 1 less than the number of elements in the questions array
         randomIndex = Int(arc4random_uniform(UInt32(questions.count)))
@@ -96,12 +115,13 @@ class ViewControllerPage2: UIViewController {
         currentQuestion = questions[randomIndex]
         } else {
             //If there are no questions left, reset the game.
-            resetGame()
+            resetGameAlert()
         }
     }
     
     
     func resetGame() {
+        whatGif.isHidden = true
         //Reset the score
         score = 0
         //Repopulate the questions array with the questions in the placeholder
@@ -122,22 +142,26 @@ class ViewControllerPage2: UIViewController {
     
     func resetGameAlert() {
         //UIAlertController
-        let resetAlert = UIAlertController(title: "Game stats", message: "You got \(score) questions right. Do you want to play again?", preferredStyle: .actionSheet)
+        let resetAlert = UIAlertController(title: "Game stats", message: "You got \(score) questions right. Do you want to play again?", preferredStyle: .alert)
         //UIAlertActions
         let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
             self.resetGame()
         }
         let noAction = UIAlertAction(title: "No", style: .default) { _ in
-            <#code#>
+            self.whatGif.isHidden = false
         }
-        
+        //add action to the alert controller
+        resetAlert.addAction(yesAction)
+        resetAlert.addAction(noAction)
+        //present the alert controller
+        self.present(resetAlert, animated: true, completion: nil)
     }
     
     
     //Show an alert when the user gets the question right
     func showCorrectAnswerAlert() {
         //UIAlertController
-        let correctAlert = UIAlertController(title: "Correct", message: "\(currentQuestion.correctAnswer) was the correct answer", preferredStyle: .actionSheet)
+        let correctAlert = UIAlertController(title: "Correct", message: "\(currentQuestion.correctAnswer) was the correct answer", preferredStyle: .alert)
         //UIAlertAction
         let closeAction = UIAlertAction(title: "Close", style: .default) { _ in
             self.questionPlaceholder.append(self.questions.remove(at: self.randomIndex))
@@ -151,8 +175,9 @@ class ViewControllerPage2: UIViewController {
     
     //Show an alert when the user gets the question wrong
     func showIncorrectAnswerAlert() {
+        whatGif.isHidden = true
         //UIAlertController
-        let incorrectAlert = UIAlertController(title: "Incorrect Answer", message: "The correct answer was: \(currentQuestion.correctAnswer)", preferredStyle: .actionSheet)
+        let incorrectAlert = UIAlertController(title: "Incorrect Answer", message: "The correct answer was: \(currentQuestion.correctAnswer)", preferredStyle: .alert)
         //UIAlertAction
         let closeAction2 = UIAlertAction(title: "Close", style: .default) { _ in
         self.questionPlaceholder.append(self.questions.remove(at: self.randomIndex))
@@ -166,6 +191,7 @@ class ViewControllerPage2: UIViewController {
     
     
     @IBAction func answerButtonTapped(_ sender: UIButton) {
+        whatGif.isHidden = true
         if sender.tag == currentQuestion.correctAnswerIndex {
             //They get the question right, so we need to let them know
             showCorrectAnswerAlert()

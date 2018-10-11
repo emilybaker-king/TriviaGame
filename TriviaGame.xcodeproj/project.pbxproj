@@ -16,6 +16,7 @@
 		B7A00D8F216D1CDF001704A5 /* ViewControllerPage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A00D8E216D1CDF001704A5 /* ViewControllerPage2.swift */; };
 		B7D8160C216E8CF7005408FF /* gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D8160B216E8CF7005408FF /* gif.swift */; };
 		B7D8160E216E8ED8005408FF /* what.gif in Resources */ = {isa = PBXBuildFile; fileRef = B7D8160D216E8ED8005408FF /* what.gif */; };
+		B7D81610216F9355005408FF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D8160F216F9355005408FF /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		B7A00D8E216D1CDF001704A5 /* ViewControllerPage2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerPage2.swift; sourceTree = "<group>"; };
 		B7D8160B216E8CF7005408FF /* gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gif.swift; sourceTree = "<group>"; };
 		B7D8160D216E8ED8005408FF /* what.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = what.gif; path = ../../../../other/what.gif; sourceTree = "<group>"; };
+		B7D8160F216F9355005408FF /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				B7A00D6E216CEA04001704A5 /* TriviaQuestion.swift */,
 				B7A00D8E216D1CDF001704A5 /* ViewControllerPage2.swift */,
 				B7D8160B216E8CF7005408FF /* gif.swift */,
+				B7D8160F216F9355005408FF /* Settings.swift */,
 			);
 			path = TriviaGame;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7D81610216F9355005408FF /* Settings.swift in Sources */,
 				B72C4873216BC72200A9C2FD /* ViewController.swift in Sources */,
 				B7A00D6F216CEA04001704A5 /* TriviaQuestion.swift in Sources */,
 				B7D8160C216E8CF7005408FF /* gif.swift in Sources */,

@@ -9,7 +9,7 @@
 import Foundation
 
 
-class TriviaQuestion {
+class TriviaQuestion: NSObject, NSCoding {
     //String storing the text of the question
     let question: String
     
@@ -18,6 +18,7 @@ class TriviaQuestion {
     
     //Store the index of the correct answer in the answers array.
     let correctAnswerIndex: Int
+    
     
     //computed property that returns the correct answer for the Trivia Question
     var correctAnswer: String {
@@ -29,6 +30,30 @@ class TriviaQuestion {
         self.question = question
         self.answers = answers
         self.correctAnswerIndex = correctAnswerIndex
+    }
+    
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(question, forKey: "question")
+        aCoder.encode(answers, forKey: "answers")
+        aCoder.encode(correctAnswerIndex, forKey: "correctAnswerIndex")
+    }
+    
+    convenience required init?(coder aDecoder: NSCoder) {
+        
+        guard let question = aDecoder.decodeObject(forKey: "question") as? String
+            else {
+                return nil
+        }
+        
+        guard let answers = aDecoder.decodeObject(forKey: "answers") as? [String]
+            else {
+                return nil
+        }
+        
+        let correctAnswerIndex = aDecoder.decodeInteger(forKey: "correctAnswerIndex")
+        
+        self.init(question: question, answers: answers, correctAnswerIndex: correctAnswerIndex)
     }
     
 }
