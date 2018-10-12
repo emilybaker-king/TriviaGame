@@ -12,6 +12,11 @@
 		B72C4876216BC72200A9C2FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B72C4874216BC72200A9C2FD /* Main.storyboard */; };
 		B72C4878216BC72300A9C2FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B72C4877216BC72300A9C2FD /* Assets.xcassets */; };
 		B72C487B216BC72300A9C2FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B72C4879216BC72300A9C2FD /* LaunchScreen.storyboard */; };
+		B7A00D6F216CEA04001704A5 /* TriviaQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A00D6E216CEA04001704A5 /* TriviaQuestion.swift */; };
+		B7A00D8F216D1CDF001704A5 /* ViewControllerPage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A00D8E216D1CDF001704A5 /* ViewControllerPage2.swift */; };
+		B7D8160C216E8CF7005408FF /* gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D8160B216E8CF7005408FF /* gif.swift */; };
+		B7D8160E216E8ED8005408FF /* what.gif in Resources */ = {isa = PBXBuildFile; fileRef = B7D8160D216E8ED8005408FF /* what.gif */; };
+		B7D81610216F9355005408FF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D8160F216F9355005408FF /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,11 @@
 		B72C4877216BC72300A9C2FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B72C487A216BC72300A9C2FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B72C487C216BC72300A9C2FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B7A00D6E216CEA04001704A5 /* TriviaQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaQuestion.swift; sourceTree = "<group>"; };
+		B7A00D8E216D1CDF001704A5 /* ViewControllerPage2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerPage2.swift; sourceTree = "<group>"; };
+		B7D8160B216E8CF7005408FF /* gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gif.swift; sourceTree = "<group>"; };
+		B7D8160D216E8ED8005408FF /* what.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = what.gif; path = ../../../../other/what.gif; sourceTree = "<group>"; };
+		B7D8160F216F9355005408FF /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,10 +66,15 @@
 			children = (
 				B72C4870216BC72200A9C2FD /* AppDelegate.swift */,
 				B72C4872216BC72200A9C2FD /* ViewController.swift */,
+				B7D8160D216E8ED8005408FF /* what.gif */,
 				B72C4874216BC72200A9C2FD /* Main.storyboard */,
 				B72C4877216BC72300A9C2FD /* Assets.xcassets */,
 				B72C4879216BC72300A9C2FD /* LaunchScreen.storyboard */,
 				B72C487C216BC72300A9C2FD /* Info.plist */,
+				B7A00D6E216CEA04001704A5 /* TriviaQuestion.swift */,
+				B7A00D8E216D1CDF001704A5 /* ViewControllerPage2.swift */,
+				B7D8160B216E8CF7005408FF /* gif.swift */,
+				B7D8160F216F9355005408FF /* Settings.swift */,
 			);
 			path = TriviaGame;
 			sourceTree = "<group>";
@@ -122,6 +137,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7D8160E216E8ED8005408FF /* what.gif in Resources */,
 				B72C487B216BC72300A9C2FD /* LaunchScreen.storyboard in Resources */,
 				B72C4878216BC72300A9C2FD /* Assets.xcassets in Resources */,
 				B72C4876216BC72200A9C2FD /* Main.storyboard in Resources */,
@@ -135,7 +151,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7D81610216F9355005408FF /* Settings.swift in Sources */,
 				B72C4873216BC72200A9C2FD /* ViewController.swift in Sources */,
+				B7A00D6F216CEA04001704A5 /* TriviaQuestion.swift in Sources */,
+				B7D8160C216E8CF7005408FF /* gif.swift in Sources */,
+				B7A00D8F216D1CDF001704A5 /* ViewControllerPage2.swift in Sources */,
 				B72C4871216BC72200A9C2FD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
